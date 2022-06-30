@@ -144,7 +144,7 @@ html, body {
 }
 
 @media screen and (max-width: 1100px) {
-    .body, .footer, .header{
+    .body, .footer{
         transform: scale(0.6) !important;
     }
     
