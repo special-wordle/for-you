@@ -147,4 +147,11 @@ html, body {
     .body, .footer, .header{
         transform: scale(0.6) !important;
     }
+    
+    #cellsContainer {
+        width: 300px !important;
+    }
+    
+    .cell {
+        width: 50px !important;
 }
