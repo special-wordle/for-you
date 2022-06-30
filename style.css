@@ -164,5 +164,7 @@ html, body {
         width: 30px !important;
     }
     
-    .special-key: 55px !important;
+    .special-key {
+        width: 55px !important;
+    }
 }
