@@ -154,4 +154,9 @@ html, body {
     
     .cell {
         width: 50px !important;
+    }
+    
+    .key {
+        width: 20px !important;
+    }
 }
