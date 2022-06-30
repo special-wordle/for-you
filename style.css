@@ -163,4 +163,6 @@ html, body {
     .key {
         width: 30px !important;
     }
+    
+    .special-key: 55px !important;
 }
