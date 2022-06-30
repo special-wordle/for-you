@@ -142,3 +142,9 @@ html, body {
         border: none;
     }
 }
+
+@media screen (max-width: 1100px) {
+    * {
+        transform: scale(0.5);
+    }
+}
