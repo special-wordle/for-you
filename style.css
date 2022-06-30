@@ -145,6 +145,6 @@ html, body {
 
 @media screen and (max-width: 1100px) {
     .body, .footer, .header, #cellsContainer, #keyboardContainer {
-        transform: scale(0.5) !important;
+        transform: scale(0.6) !important;
     }
 }
