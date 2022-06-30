@@ -145,6 +145,6 @@ html, body {
 
 @media screen (max-width: 1100px) {
     * {
-        transform: scale(0.5);
+        transform: scale(0.5) !important;
     }
 }
