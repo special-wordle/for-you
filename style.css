@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    background: #121213;
+}
+
+.header {
+    height: 51px;
+    width: 100%;
+    border-bottom: solid 1px #3a3a3c;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.body {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#cellsContainer {
+    width: 390px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 25px;
+}
+
+.cell {
+    width: 62px;
+    height: 62px;
+    border: solid 2px #3a3a3c;
+    margin: 2.5px;
+
+    font-family: sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 34%;
+}
+
+#keyboardContainer {
+    width: 510px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.key, .special-key {
+    width: 43px;
+    height: 58px;
+
+    margin: 3.5px;
+    background-color: #818384;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 4px;
+
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+
+    cursor: pointer;
+
+    user-select: none;
+}
+
+.backspace-key {
+    background-image: url(back.png);
+    background-size: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: invert(1);
+
+}
+
+@keyframes push {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.letter-cell {
+    border-color: #565758;
+    animation: push 0.1s ease-in-out;
+}
+
+.space-key {
+    width: 21.5px;
+}
+
+.special-key {
+    width: 65.41px;
+    height: 58px;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateX(0deg);
+    }
+
+    99% {
+        transform: rotateX(180deg);
+        border: none;
+    }
+
+    100% {
+        background-color: #538d4e;
+        border: none;
+    }
+}

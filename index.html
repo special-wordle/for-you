@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle - The New York Times</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="left-settings-container" style="cursor: pointer;">
+            <img src="/fake1.jpg" alt="">
+        </div>
+        <div class="logo-container">
+            <img src="/logo.jpg" alt="">
+        </div>
+        <div class="left-settings-container" style="cursor: pointer;">
+            <img src="/fake2.jpg" alt="">
+        </div>
+    </div>
+    <div class="body">
+        <div id="cellsContainer"></div>
+    </div>
+    <div class="footer">
+        <div id="keyboardContainer"></div>
+    </div>
+    <script>
+
+        let cellsContainer = document.getElementById('cellsContainer')
+        for(let i = 0; i < 30; i++){
+            let cell = document.createElement('div');
+            cell.className = 'cell';
+            cellsContainer.appendChild(cell);
+        }
+
+        let myRow = 0;
+        let myLetter = 0;
+        let myMessage = ['MARIA', 'HAPPY', 'BIRTH', '•DAY•', '♥☺!☺♥'];
+
+        let rand = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
+
+        function fireworks(){
+            let cnv = document.createElement('canvas');
+            cnv.width = window.innerWidth;
+            cnv.height = window.innerHeight;
+            cnv.style.position = 'absolute';
+            cnv.style.zIndex = '2000';
+            cnv.style.pointerEvents = 'none';
+
+            document.body.appendChild(cnv);
+
+            let ctx = cnv.getContext('2d');
+
+            let particles = [];
+
+            for(let i = 0; i < 300; i++){
+                particles.push({
+                x: cnv.width/2 + rand(-100, 100),
+                y: cnv.height + rand(-100, 100),
+                vx: rand(-16, 16),
+                vy: rand(-40, -20), 
+                g: 1,
+                color: `rgb(${rand(50,255)}, ${rand(50,255)}, ${rand(50,255)})`,
+                a: 0,
+                size: rand(5, 10),
+            })
+        }
+    
+        let interval = setInterval(() => {
+        ctx.clearRect(0,0,cnv.width,cnv.height);
+        for(let i = 0; i < particles.length; i++){
+        ctx.save();
+        ctx.fillStyle = particles[i].color;
+        ctx.fillRect(particles[i].x, particles[i].y, particles[i].size, particles[i].size);
+        ctx.restore();
+
+        particles[i].x += particles[i].vx;
+        particles[i].y += particles[i].vy;
+        particles[i].vx /= 1.02;
+        
+        if(particles[i].vy >= 8){
+            
+            particles[i].vx += rand(-1, 1);
+        } else {
+            particles[i].g *= 1.008;
+            particles[i].vy += particles[i].g/5;
+        }
+
+        if(particles[i].y > cnv.height){
+            particles.splice(i, 1);
+            if(particles.length == 0){
+            document.body.removeChild(cnv);
+            clearInterval(interval);
+            }
+        }
+
+        }
+    }, 1000/60)
+    }
+
+        function addLetter(){
+            let cells = document.getElementsByClassName('cell');
+            for(let i = 0; i < cells.length; i++){
+                cells[myLetter+(myRow*5)].innerText = myMessage[myRow][myLetter];
+                cells[myLetter+(myRow*5)].classList.add('letter-cell')
+            }
+
+            function rotateCards(){
+                cells[1].style.animation = 'rotate 0.3s ease-in-out forwards'; cells[1].style.animationDelay = 1/10 + 's';
+                cells[3].style.animation = 'rotate 0.3s ease-in-out forwards';cells[3].style.animationDelay = 2/10 + 's';
+                cells[5].style.animation = 'rotate 0.3s ease-in-out forwards';cells[5].style.animationDelay = 3/10 + 's';
+                cells[6].style.animation = 'rotate 0.3s ease-in-out forwards';cells[6].style.animationDelay = 4/10 + 's';
+                cells[7].style.animation = 'rotate 0.3s ease-in-out forwards';cells[7].style.animationDelay = 5/10 + 's';
+                cells[8].style.animation = 'rotate 0.3s ease-in-out forwards';cells[8].style.animationDelay = 6/10 + 's';
+                cells[9].style.animation = 'rotate 0.3s ease-in-out forwards';cells[9].style.animationDelay = 7/10 + 's';
+                cells[10].style.animation = 'rotate 0.3s ease-in-out forwards';cells[10].style.animationDelay = 8/10 + 's';
+                cells[11].style.animation = 'rotate 0.3s ease-in-out forwards';cells[11].style.animationDelay = 9/10 + 's';
+                cells[12].style.animation = 'rotate 0.3s ease-in-out forwards';cells[12].style.animationDelay = 10/10 + 's';
+                cells[13].style.animation = 'rotate 0.3s ease-in-out forwards';cells[13].style.animationDelay = 11/10 + 's';
+                cells[14].style.animation = 'rotate 0.3s ease-in-out forwards';cells[14].style.animationDelay = 12/10 + 's';
+                cells[16].style.animation = 'rotate 0.3s ease-in-out forwards';cells[16].style.animationDelay = 13/10 + 's';
+                cells[17].style.animation = 'rotate 0.3s ease-in-out forwards';cells[17].style.animationDelay = 14/10 + 's';
+                cells[18].style.animation = 'rotate 0.3s ease-in-out forwards';cells[18].style.animationDelay = 15/10 + 's';
+                cells[22].style.animation = 'rotate 0.3s ease-in-out forwards';cells[22].style.animationDelay = 16/10 + 's';
+                setTimeout(()=>{
+                    fireworks()
+                    fireworks()
+                }, (16/10)*1000);
+            }
+
+            myLetter++;
+            if(myLetter == 5){
+                myLetter = 0;
+                myRow++;
+                if(myRow == 5){
+                    rotateCards();
+                }
+            }
+        }
+
+        let keyboardContainer = document.getElementById('keyboardContainer');
+        let keys = 'Q.W.E.R.T.Y.U.I.O.P.SPACE.A.S.D.F.G.H.J.K.L.ENTER.Z.X.C.V.B.N.M.BACK';
+        for(let i = 0; i < keys.split('.').length; i++){
+            let key = document.createElement('div');
+            if(keys.split('.')[i].length == 1){
+                key.className = 'key';
+                key.innerText = keys.split('.')[i];
+                key.onclick = addLetter;
+                
+            } else if (keys.split('.')[i] == 'SPACE'){
+                key.className = 'space-key'
+            } else {
+                key.className = 'special-key';
+                if(keys.split('.')[i] == 'BACK'){
+                    key.classList.add('backspace-key');
+                } else {
+                    key.innerText = keys.split('.')[i];
+                }
+            }
+            keyboardContainer.appendChild(key);
+        }
+
+        
+
+    </script>
+</body>
+</html>
